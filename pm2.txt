@@ -1,0 +1,7 @@
+pm2 start main.py --interpreter=python3 --name sapphire
+
+pm2 restart sapphire
+
+pm2 stop sapphire
+
+pm2 monit

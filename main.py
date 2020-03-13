@@ -1,9 +1,6 @@
-import sapphire0
+import sapphire
 import time
 
 while 1:
-	
-	# do work
-	sapphire0.go()
-
+	sapphire.go()
 	time.sleep(4)

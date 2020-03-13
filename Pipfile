@@ -16,7 +16,7 @@ python_version = "3.8"
 
 [scripts]
 start = "pipenv run python main.py"
-test = "pipenv run python main.py"
-format = "pipenv run python main.py"
-lint = "pipenv run python main.py"
-printfoo = "python -c \"print('foo')\""
+test = "pipenv run python -c \"print('testme')\""
+format = "pipenv run python -c \"print('formatme')\""
+lint = "pipenv run python -c \"print('lintme')\""
+printfoo = "pipenv run python -c \"print('foo')\""
