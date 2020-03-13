@@ -1,0 +1,22 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+
+[packages]
+requests = "*"
+google-api-python-client = "*"
+google-auth-httplib2 = "*"
+google-auth-oauthlib = "*"
+
+[requires]
+python_version = "3.8"
+
+[scripts]
+start = "pipenv run python main.py"
+test = "pipenv run python main.py"
+format = "pipenv run python main.py"
+lint = "pipenv run python main.py"
+printfoo = "python -c \"print('foo')\""
