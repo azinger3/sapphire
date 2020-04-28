@@ -1,7 +1,21 @@
-pm2 start main.py --interpreter=python3 --name sapphire
-
-pm2 restart sapphire
-
-pm2 stop sapphire
-
+-- mkdir sapphire
+-- clone sapphire
+-- install homebrew
+-- install python
+-- install pipenv
+-- install node
+-- install pm2
+sudo npm install pm2 -g
+-- install app
+cd <project> && pipenv install
+-- install credentials
+-- install endpoints
+-- start app
+pm2 start "pipenv run python3 main.py" --name sapphire
+-- monitor app
 pm2 monit
+--set autostart
+
+--maintenance
+pm2 restart sapphire
+pm2 stop sapphire
