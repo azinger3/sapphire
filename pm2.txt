@@ -8,7 +8,7 @@
 sudo npm install pm2 -g
 -- install app
 cd <project> && pipenv install
--- install credentials
+-- install credentials -> google dev console, desktop client, oauth url redirect
 -- install endpoints
 -- start app
 pm2 start "pipenv run python3 main.py" --name sapphire
