@@ -19,3 +19,5 @@ pm2 monit
 --maintenance
 pm2 restart sapphire
 pm2 stop sapphire
+pm2 delete sapphire
+pm2 logs --out --format
