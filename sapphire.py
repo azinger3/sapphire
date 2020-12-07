@@ -29,40 +29,62 @@ def go():
     Budget Transaction Bot - Sapphire
     """
     # Authenticate
+    print('****************** Authenticate ******************')
+
     creds = None
 
     if os.path.exists('token.pickle'):
         with open('token.pickle', 'rb') as token:
+            print('****************** Load Token ******************')
+
             creds = pickle.load(token)
 
     if not creds or not creds.valid:
+        print('****************** Credentials ******************')
+
         if creds and creds.expired and creds.refresh_token:
+            print('****************** Refresh Credentials ******************')
+
             creds.refresh(Request())
         else:
+            print('****************** Load Credentials ******************')
+
             flow = InstalledAppFlow.from_client_secrets_file('credentials.json', SCOPES)
             creds = flow.run_local_server(port=0)
 
         with open('token.pickle', 'wb') as token:
+            print('****************** Dump Token ******************')
+
             pickle.dump(creds, token)
+
+    print('****************** Load Service ******************')
 
     service = build('gmail', 'v1', credentials=creds)
 
     # Set Date Range
+    print('****************** Set Date Range ******************')
+    
     start_datetime = datetime.today() - timedelta(days=2)
     end_datetime = datetime.today() + timedelta(days=2)
 
     start_date = start_datetime.strftime("%Y/%m/%d")
     end_date = end_datetime.strftime("%Y/%m/%d")
 
+    print(start_date)
+    print(end_date)
+
     # Set Query
+    print('****************** Set Query ******************')
+
     user_id = 'me'
     full = 'full'
     query = 'after:' + start_date + ' before:' + end_date + ' subject:Your Single Transaction Alert from Chase'
 
-    print('Query')
     print(query)
 
     # List Messages (All Pages)
+    print('****************** Run Query ******************')
+
     response = service.users().messages().list(userId=user_id, q=query).execute()
 
     messages_all_pages = []
@@ -79,7 +101,7 @@ def go():
 
     # Find Transactions in Message List
     if not messages:
-        print('No messages found.')
+        print('No messages found...')
     else:
         for message in messages:
             queue_id = message['id']
@@ -115,7 +137,7 @@ def go():
                 'Note': 'CC'
             }
 
-            print('Transaction Found')
+            print('****************** Transaction Found ******************')
             print(transaction)
 
             # Send to Queue
